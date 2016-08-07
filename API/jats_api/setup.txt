@@ -1,0 +1,64 @@
+# JATS API
+
+A [Sails](http://sailsjs.org) application for JATS Database; to get/create user actions.
+                .-..-.
+
+    Sails              <|    .-..-.
+    v0.12.4             |\
+                       /|.\
+                      / || \
+                    ,'  |'  \
+                 .-'.-==|/_--'
+                 `--'-------'
+    __---___--___---___--___---___--___
+  ____---___--___---___--___---___--___-__
+
+## Development tools
+- [Atom](https://atom.io/)
+- [SourceTree/git](https://www.sourcetreeapp.com/)
+- [NodeJS](https://nodejs.org/en/)
+
+# How to create a REST API
+
+Install node js
+
+# Create a git/github repository
+
+# Open CLI terminal
+# cd into that folder
+cd ~/Projects/development/API
+
+# Get the latest stable release of Sails
+npm install sails -g
+
+# Create the sails app
+sails new jats_api
+
+# cd into the new folder
+cd jats_api
+
+# Fire up the server (Lift the sails)
+sails lift
+# Open up localhost/1337 to view your sails website
+
+# Generating a REST API.
+sails generate api user
+sails generate api action
+# This will create two files: a model and a controller.
+
+# Download sails-sqlserver adapter  
+
+
+
+
+
+## Help
+Helpful tabs to have open
+
+- [Packages](https://www.npmjs.com/)
+- [Managing packages](https://docs.npmjs.com/)
+- [Sails Docs](http://sailsjs.org/documentation/concepts/)
+- [Sails Ref](http://sailsjs.org/documentation/reference/)
+- [Database Queries](https://github.com/balderdashy/waterline-docs)
+- [Templating Views](https://mozilla.github.io/nunjucks/templating.html)
+- [Async Calls](https://github.com/caolan/async)
