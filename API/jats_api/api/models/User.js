@@ -6,9 +6,20 @@
  */
 
 module.exports = {
-
+  schema: true,
+  connection: 'sqlserver',
+  tableName: 'Products',
   attributes: {
-
+    ProductID: {
+      type: 'int',
+      primaryKey: true //if this is a primary key
+    },
+    ProductName: {
+      type: 'string'
+    },
+    ProductDescription: {
+      type: 'string'
+    }
   }
-};
 
+};

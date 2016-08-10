@@ -46,7 +46,70 @@ sails generate api user
 sails generate api action
 # This will create two files: a model and a controller.
 
-# Download sails-sqlserver adapter  
+# Download sails-sqlserver adapter
+npm install sails-sqlserver --save
+
+
+sql server 2014 configuration management
+
+Shared Memory Enabled
+Named Pipes Enabled
+TCP/IP Enabled
+
+tcp yes port 1433
+
+
+changed to sql and windows auth mode
+
+made dbuser under Login folder
+
+gave public and admin,
+
+username: dbuser
+password: password
+
+User.find({
+  ProductName: 'Product 1'
+}).exec(function(err, p_name) {
+  if (err) {
+    return res.serverError(err);
+  }
+  sails.log('Wow, there are %d users named Finn.  Check it out:', p_name.length, p_name);
+  return res.json(p_name);
+});
+
+connecting
+sqlserver: {
+  adapter: 'sails-sqlserver',
+  host: 'localhost', //
+  user: 'dbuser',
+  password: 'password',
+  database: 'JATS_DB', //optional
+  port: '1433'
+},
+
+
+For new schema, had to pull the recent changes for sql-server adapter, current running 0.10.8, pulled 0.10.9 for adapter.js sql.js, utils.js
+
+Thread on issue:
+https://github.com/cnect/sails-sqlserver/issues/18
+https://github.com/cnect/sails-sqlserver/issues/18
+NEED THESE CHANGES - adapter.js sql.js, utils.js  just view raw data and copy/paste
+https://github.com/cnect/sails-sqlserver/pull/28/commits/55871016d00f3e6dd8cf5e52d45ad6aa2edda6b5
+
+
+
+
+
+# Links for connecting to DB
+https://groups.google.com/forum/#!topic/sailsjs/N0N6XJpPWrs
+https://www.youtube.com/watch?v=Y1j6AO8TMDA
+http://dba.stackexchange.com/questions/62165/i-cant-connect-to-my-servers-sql-database-via-an-ip-address
+http://stackoverflow.com/questions/3781365/how-to-change-sa-password-in-sql-server-2008-express
+http://sailsjs.org/documentation/reference/waterline-orm/models/find
+http://stackoverflow.com/questions/32264207/how-do-i-get-sails-js-to-query-an-existing-database
+https://www.youtube.com/watch?v=RxGBkDCNPPk
+https://github.com/balderdashy/sails-docs/blob/master/contributing/intro-to-custom-adapters.md
 
 
 
