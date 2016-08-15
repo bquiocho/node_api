@@ -42,9 +42,9 @@ sails lift
 # Open up localhost/1337 to view your sails website
 
 # Generating a REST API.
-sails generate api user
-sails generate api action
-# This will create two files: a model and a controller.
+sails generate api Users
+sails generate api ActionDetails
+# This will create two files (for each API): a model and a controller.
 
 # Download sails-sqlserver adapter
 npm install sails-sqlserver --save

@@ -32,6 +32,14 @@
     <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
     <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/ui/moment/moment.min.js"></script>
     <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/pickers/daterangepicker.js"></script>
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/forms/selects/select2.min.js"></script>
+
+    <!-- Added by Brandon Quiocho -->
+    <!-- <script type="text/javascript" src="/stylesheets/default/assets/temp/jats.js"></script> -->
+    <script type="text/javascript" src="/js/jats.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/pages/datatables_basic.js"></script>
 
     <!-- app.js giving error -->
     <script type="text/javascript" src="/stylesheets/default/assets/js/core/app.js"></script>
@@ -42,666 +50,743 @@
 
 <body>
     <!-- <h1><%= title %></h1> -->
-    <p>Welcome to
-        <%= title %>
-    </p>
 
     <!-- Main navbar -->
     <div class="navbar navbar-inverse">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="index.html"><img src="/stylesheets/default/assets/images/logo_light.png" alt=""></a>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html"><img src="/stylesheets/default/assets/images/logo_light.png" alt=""></a>
 
-        <ul class="nav navbar-nav pull-right visible-xs-block">
-          <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
-        </ul>
-      </div>
-
-      <div class="navbar-collapse collapse" id="navbar-mobile">
-
-        <p class="navbar-text"><span class="label bg-success-400">Online</span></p>
-
-        <ul class="nav navbar-nav navbar-right">
-
-          <li class="dropdown dropdown-user">
-            <a class="dropdown-toggle" data-toggle="dropdown">
-              <img src="/stylesheets/default/assets/images/placeholder.jpg" alt="">
-              <span><%= user[0].FName %>&nbsp;<%= user[0].LName %></span>
-              <i class="caret"></i>
-            </a>
-
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
-              <li><a href="#"><i class="icon-coins"></i> My balance</a></li>
-              <li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
-              <li class="divider"></li>
-              <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-              <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
             </ul>
-          </li>
-        </ul>
-      </div>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+
+            <p class="navbar-text"><span class="label bg-success-400">Online</span></p>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="/stylesheets/default/assets/images/placeholder.jpg" alt="">
+                        <span><%= user[0].FName %>&nbsp;<%= user[0].LName %></span>
+                        <i class="caret"></i>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+                        <li><a href="#"><i class="icon-coins"></i> My balance</a></li>
+                        <li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
+                        <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
     <!-- /main navbar -->
 
     <!-- Second navbar -->
     <div class="navbar navbar-default" id="navbar-second">
-      <ul class="nav navbar-nav no-border visible-xs-block">
-        <li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7"></i></a></li>
-      </ul>
+        <ul class="nav navbar-nav no-border visible-xs-block">
+            <li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7"></i></a></li>
+        </ul>
 
-      <div class="navbar-collapse collapse" id="navbar-second-toggle">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html"><i class="icon-display4 position-left"></i> Home</a></li>
+        <div class="navbar-collapse collapse" id="navbar-second-toggle">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html"><i class="icon-display4 position-left"></i> Home</a></li>
 
-          <li class="dropdown mega-menu mega-menu-wide">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-clipboard3 position-left"></i> Reports <span class="caret"></span></a>
+                <li class="dropdown mega-menu mega-menu-wide">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-clipboard3 position-left"></i> Reports <span class="caret"></span></a>
 
-            <div class="dropdown-menu dropdown-content">
-              <div class="dropdown-content-body">
-                <div class="row">
-                  <div class="col-md-3">
-                    <span class="menu-heading underlined">Actions</span>
-                    <ul class="menu-list">
-                      <li>
-                        <a href="#"><i class="icon-radio-unchecked"></i>Open</a>
-                        <!-- <ul>
+                    <div class="dropdown-menu dropdown-content">
+                        <div class="dropdown-content-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span class="menu-heading underlined">Actions</span>
+                                    <ul class="menu-list">
+                                        <li>
+                                            <a href="#"><i class="icon-radio-unchecked"></i>Open</a>
+                                            <!-- <ul>
                           <li><a href="alpaca_basic.html">Basic inputs</a></li>
                           <li><a href="alpaca_advanced.html">Advanced inputs</a></li>
                           <li><a href="alpaca_controls.html">Controls</a></li>
                         </ul> -->
-                      </li>
-                      <li>
-                        <a href="#"><i class="icon-checkmark-circle"></i>Closed</a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="icon-notification2"></i>Overdue</a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="icon-info22"></i>Info Only</a>
-                      </li>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-checkmark-circle"></i>Closed</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-notification2"></i>Overdue</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-info22"></i>Info Only</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#"><i class="icon-add-to-list position-left"></i> Add Action</a>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">
+                        <i class="icon-search4 position-left"></i> Search Action
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="icon-clipboard6 position-left"></i> Quick Summary
+                    </a>
+
+                    <ul class="dropdown-menu width-200">
+                        <li class="dropdown-header">Basic layouts</li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-grid2"></i> Columns</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header highlight">Options</li>
+                                <li><a href="starters/1_col.html">One column</a></li>
+                                <li><a href="starters/2_col.html">Two columns</a></li>
+                                <li class="dropdown-submenu">
+                                    <a href="#">Three columns</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-header highlight">Sidebar position</li>
+                                        <li><a href="starters/3_col_dual.html">Dual sidebars</a></li>
+                                        <li><a href="starters/3_col_double.html">Double sidebars</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="starters/4_col.html">Four columns</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-paragraph-justify3"></i> Navbars</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header highlight">Fixed navbars</li>
+                                <li><a href="starters/layout_navbar_fixed_main.html">Fixed main navbar</a></li>
+                                <li><a href="starters/layout_navbar_fixed_secondary.html">Fixed secondary navbar</a></li>
+                                <li><a href="starters/layout_navbar_fixed_both.html">Both navbars fixed</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-header">Optional layouts</li>
+                        <li><a href="starters/layout_boxed.html"><i class="icon-align-center-horizontal"></i> Fixed width</a></li>
+                        <li><a href="starters/layout_sidebar_sticky.html"><i class="icon-flip-vertical3"></i> Sticky sidebar</a></li>
                     </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
+                </li>
+            </ul>
 
-          <li>
-            <a href="#"><i class="icon-add-to-list position-left"></i> Add Action</a>
-          </li>
+            <ul class="nav navbar-nav navbar-right">
 
-          <li class="dropdown">
-            <a href="#">
-              <i class="icon-search4 position-left"></i> Search Action
-            </a>
-          </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-cog3"></i>
+                        <span class="visible-xs-inline-block position-right">Share</span>
+                        <span class="caret"></span>
+                    </a>
 
-          <li>
-            <a href="#">
-              <i class="icon-clipboard6 position-left"></i> Quick Summary
-            </a>
-
-            <ul class="dropdown-menu width-200">
-              <li class="dropdown-header">Basic layouts</li>
-              <li class="dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-grid2"></i> Columns</a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown-header highlight">Options</li>
-                  <li><a href="starters/1_col.html">One column</a></li>
-                  <li><a href="starters/2_col.html">Two columns</a></li>
-                  <li class="dropdown-submenu">
-                    <a href="#">Three columns</a>
-                    <ul class="dropdown-menu">
-                      <li class="dropdown-header highlight">Sidebar position</li>
-                      <li><a href="starters/3_col_dual.html">Dual sidebars</a></li>
-                      <li><a href="starters/3_col_double.html">Double sidebars</a></li>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
+                        <li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
+                        <li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
                     </ul>
-                  </li>
-                  <li><a href="starters/4_col.html">Four columns</a></li>
-                </ul>
-              </li>
-              <li class="dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-paragraph-justify3"></i> Navbars</a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown-header highlight">Fixed navbars</li>
-                  <li><a href="starters/layout_navbar_fixed_main.html">Fixed main navbar</a></li>
-                  <li><a href="starters/layout_navbar_fixed_secondary.html">Fixed secondary navbar</a></li>
-                  <li><a href="starters/layout_navbar_fixed_both.html">Both navbars fixed</a></li>
-                </ul>
-              </li>
-              <li class="dropdown-header">Optional layouts</li>
-              <li><a href="starters/layout_boxed.html"><i class="icon-align-center-horizontal"></i> Fixed width</a></li>
-              <li><a href="starters/layout_sidebar_sticky.html"><i class="icon-flip-vertical3"></i> Sticky sidebar</a></li>
+                </li>
             </ul>
-          </li>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="icon-cog3"></i>
-              <span class="visible-xs-inline-block position-right">Share</span>
-              <span class="caret"></span>
-            </a>
-
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
-              <li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
-              <li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
-              <li class="divider"></li>
-              <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+        </div>
     </div>
     <!-- /second navbar -->
 
     <!-- Page header -->
-  	<div class="page-header">
-  		<div class="page-header-content">
-  			<div class="page-title">
-  				<h4>
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4>
   					<i class="icon-arrow-left52 position-left"></i>
-  					<span class="text-semibold">Home</span> - Dashboard
-  					<small class="display-block">Good morning, <%= user[0].FName %>&nbsp;<%= user[0].LName %>!</small>
+  					<span class="text-semibold">Home</span> - Quick Summary
+  					<small class="display-block">Welcome to <%= title %>, <%= user[0].FName %>&nbsp;<%= user[0].LName %>!</small>
   				</h4>
-  			</div>
+            </div>
 
-  			<div class="heading-elements">
+            <!-- <div class="heading-elements">
   				<div class="heading-btn-group">
   					<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
   					<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>
   					<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
   				</div>
-  			</div>
-  		</div>
-  	</div>
-  	<!-- /page header -->
+  			</div> -->
+        </div>
+    </div>
+    <!-- /page header -->
 
 
-  	<!-- Page container -->
-  	<div class="page-container">
+    <!-- Page container -->
+    <div class="page-container">
 
-  		<!-- Page content -->
-  		<div class="page-content">
+        <!-- Page content -->
+        <div class="page-content">
 
-  			<!-- Main content -->
-  			<div class="content-wrapper">
+            <!-- Main content -->
+            <div class="content-wrapper">
 
-  				<!-- Main charts -->
-  				<div class="row">
+                <!-- Main charts -->
+                <div class="row">
 
-  					<div class="col-lg-10">
+                    <!--Container 1 -->
+                    <div class="col-lg-4">
 
-  						<!-- Sales stats -->
-  						<div class="panel panel-flat">
-  							<div class="panel-heading">
-  								<h6 class="panel-title">Users</h6>
-  							</div>
+                        <!-- Horizontal form -->
+                        <div class="panel panel-flat">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">My Info</h5>
+                                <div class="heading-elements">
+                                    <ul class="icons-list">
+                                        <li>
+                                            <a data-action="collapse"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
 
-  							<div class="container-fluid">
-  								<div class="row text-center">
+                            <div class="panel-body">
+                                <form class="form-horizontal" action="#">
+                                    <% user.forEach(function(item) { %>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Name:</label>
+                                            <label class="control-label col-lg-6">
+                                                <%= item.FName %>
+                                                    <%= item.LName %>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Title:</label>
+                                            <label class="control-label col-lg-6">
+                                                <%= item.Title %>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Center:</label>
+                                            <label class="control-label col-lg-6">
+                                                <%= item.FName %>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Org Code:</label>
+                                            <label class="control-label col-lg-6">
+                                                <%= item.Org %>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Email:</label>
+                                            <label class="control-label col-lg-6">
+                                                <%= item.Email %>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Role:</label>
+                                            <label class="control-label col-lg-6">
+                                                <%= item.FName %>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">Group(s):</label>
+                                            <label class="control-label col-lg-6">
+                                                <%= item.FName %>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-2">JSC User ID:</label>
+                                            <label class="control-label col-lg-6">
+                                                <%= item.JSCID %>
+                                            </label>
+                                        </div>
+                                        <% }); %>
 
-                    <!-- Framed panel body table -->
-            				<div class="panel panel-flat">
-            					<div class="panel-heading">
-            						<h5 class="panel-title">Quick Summary - My Info</h5>
-            						<div class="heading-elements">
-            							<ul class="icons-list">
-            		                		<li><a data-action="collapse"></a></li>
-            		                		<li><a data-action="reload"></a></li>
-            		                		<li><a data-action="close"></a></li>
-            		                	</ul>
-            	                	</div>
-            					</div>
+                                            <!-- <div class="text-right">
+                              <button type="submit" class="btn btn-primary">Submit form <i class="icon-arrow-right14 position-right"></i></button>
+                            </div> -->
+                                </form>
+                            </div>
+                        </div>
 
-            					<div class="panel-body">
-            						<div class="table-responsive">
-            							<table class="table table-framed" style="text-align:left;">
-            								<thead>
-            									<tr>
-            										<th>First Name</th>
-            										<th>Last Name</th>
-                                <th>Title</th>
-            										<th>Org Num</th>
-                                <th>Email</th>
-                                <th>JSC userid</th>
-            									</tr>
-            								</thead>
-            								<tbody>
-                              <% user.forEach(function(item) { %>
-                                <tr>
-              										<td><%= item.FName %></td>
-              										<td><%= item.LName %></td>
-                                  <td><%= item.Title %></td>
-              										<td><%= item.Org %></td>
-                                  <td><%= item.Email %></td>
-                                  <td><%= item.JSCID %></td>
-              									</tr>
-                                  <% }); %>
-            								</tbody>
-            							</table>
-            						</div>
-            					</div>
-            				</div>
-            				<!-- /framed panel body table -->
+                        <!-- User Info
+                        <div class="panel panel-flat">
+                            <div class="panel-heading">
+                                <h6 class="panel-title">Users</h6>
+                            </div>
 
-  								</div>
-  							</div>
+                            <div class="container-fluid">
+                                <div class="row text-center">
 
-  							<div class="content-group-sm" id="app_sales"></div>
-  							<div id="monthly-sales-stats"></div>
-  						</div>
-  						<!-- /sales stats -->
+                                    <!-- Framed panel body table
+                                    <div class="panel panel-flat">
+                                        <div class="panel-heading">
+                                            <h5 class="panel-title">My Info</h5>
+                                            <div class="heading-elements">
+                                                <ul class="icons-list">
+                                                    <li>
+                                                        <a data-action="collapse"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a data-action="close"></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
 
-  					</div>
-  				</div>
-  				<!-- /main charts -->
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-framed" style="text-align:left;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>First Name</th>
+                                                            <th>Last Name</th>
+                                                            <th>Title</th>
+                                                            <th>Org Num</th>
+                                                            <th>Email</th>
+                                                            <th>JSC userid</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% user.forEach(function(item) { %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%= item.FName %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= item.LName %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= item.Title %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= item.Org %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= item.Email %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= item.JSCID %>
+                                                                </td>
+                                                            </tr>
+                                                            <% }); %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /framed panel body table
+
+                                </div>
+                            </div>
+
+                            <div class="content-group-sm" id="app_sales"></div>
+                            <div id="monthly-sales-stats"></div>
+                        </div>
+                        <!-- /User Info -->
+
+                    </div>
+                    <!--/Container 1 -->
+
+                    <!--Container 2 -->
+                    <!-- <div class="col-lg-6">
+
+                    </div> -->
+                    <!--/Container 2 -->
+
+                    <!--Container 3 -->
+                    <div class="col-lg-8">
+
+                        <!-- All Actions -->
+                        <div class="panel panel-flat">
+                            <div class="panel-heading">
+                                <h6 class="panel-title">All Actions (assigned to me)</h6>
+                                <div class="heading-elements">
+                                    <!-- <button type="button" class="btn btn-link daterange-ranges heading-btn text-semibold">
+                                        <i class="icon-calendar3 position-left"></i> <span></span> <b class="caret"></b>
+                                    </button> -->
+                                </div>
+                            </div>
+
+                              <table class="table datatable-basic">
+                                <thead>
+                                  <tr>
+                                    <th>Number</th>
+                                    <th>Originator</th>
+                                    <th>Title</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th class="text-center">Tools</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <% actions.forEach(function(action) { %>
+                                    <tr>
+                                      <td><%=action.ActionID%></td>
+                                      <td><%=action.Originator%></td>
+                                      <td><%=action.Title%></td>
+                                      <td><%=action.DueDate%></td>
+                                      <td><span class="label label-success"><%=action.Status%></span></td>
+                                      <td class="text-center">
+                                        <ul class="icons-list">
+                                          <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                              <i class="icon-menu9"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                              <li><a href="#"><i class="icon-file-pdf"></i> Open</a></li>
+                                              <li><a href="#"><i class="icon-file-excel"></i> Update</a></li>
+                                              <li><a href="#"><i class="icon-file-word"></i> Complete</a></li>
+                                            </ul>
+                                          </li>
+                                        </ul>
+                                      </td>
+                                    </tr>
+                                      <% }); %>
+
+                                </tbody>
+                              </table>
+
+                                <!-- <table class="table datatable-actions table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 50px">No.</th>
+                                            <th style="width: 50px;">Status</th>
+                                            <th>Title</th>
+                                            <th>Due Date</th>
+                                            <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="active border-double">
+                                            <td colspan="4">All actions</td>
+                                            <td class="text-right">
+                                                <span class="badge bg-blue">24</span>
+                                            </td>
+                                        </tr>
+
+                                        <% actions.forEach(function(action) { %>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <h6 class="no-margin"><%=action.ActionID%></h6>
+                                                </td>
+                                                <td>
+                                                    <div class="media-body">
+                                                        <span class="label bg-blue"><%=action.Status%></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="text-default display-inline-block">
+                                                        <span class="text-semibold"><%=action.Title%></span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="text-default display-inline-block">
+                                                        <span class="text-semibold"><%=action.DueDate%></span>
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <ul class="icons-list">
+                                                        <li class="dropdown">
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                                <li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+                                                                <li><a href="#"><i class="icon-history"></i> Full history</a></li>
+                                                                <li class="divider"></li>
+                                                                <li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
+                                                                <li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <h6 class="no-margin">#77463</h6>
+                                                    </td>
+                                                    <td>
+                                                        <div class="media-left media-middle">
+                                                            <a href="#" class="btn bg-teal-400 btn-rounded btn-icon btn-xs">
+                                                                <span class="letter-icon"></span>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="media-body">
+                                                            <a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Status</a>
+                                                            <div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="text-default display-inline-block">
+                                                            <span class="text-semibold">Title</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="text-default display-inline-block">
+                                                            <span class="text-semibold">8/12/2016</span>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <ul class="icons-list">
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                                    <li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+                                                                    <li><a href="#"><i class="icon-history"></i> Full history</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
+                                                                    <li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <h6 class="no-margin">#77463</h6>
+                                                    </td>
+                                                    <td>
+                                                        <div class="media-left media-middle">
+                                                            <a href="#" class="btn bg-teal-400 btn-rounded btn-icon btn-xs">
+                                                                <span class="letter-icon"></span>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="media-body">
+                                                            <a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Status</a>
+                                                            <div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="text-default display-inline-block">
+                                                            <span class="text-semibold">Title</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="text-default display-inline-block">
+                                                            <span class="text-semibold">8/12/2016</span>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <ul class="icons-list">
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                                    <li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+                                                                    <li><a href="#"><i class="icon-history"></i> Full history</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
+                                                                    <li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <h6 class="no-margin">12 <small class="display-block text-size-small no-margin">hours</small></h6>
+                                                    </td>
+                                                    <td>
+                                                        <div class="media-left media-middle">
+                                                            <a href="#" class="btn bg-teal-400 btn-rounded btn-icon btn-xs">
+                                                                <span class="letter-icon"></span>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="media-body">
+                                                            <a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Annabelle Doney</a>
+                                                            <div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="text-default display-inline-block">
+                                                            <span class="text-semibold">[#1183] Workaround for OS X selects printing bug</span>
+                                                            <span class="display-block text-muted">Chrome fixed the bug several versions ago, thus rendering this...</span>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <ul class="icons-list">
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                                    <li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+                                                                    <li><a href="#"><i class="icon-history"></i> Full history</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
+                                                                    <li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
 
 
-  				<!-- Dashboard content -->
-  				<div class="row">
-  					<div class="col-lg-8">
+                                                <tr class="active border-double">
+                                                    <td colspan="3">Open actions</td>
+                                                    <td class="text-right">
+                                                        <span class="badge bg-blue">24</span>
+                                                    </td>
+                                                </tr>
 
-  						<!-- Support tickets -->
-  						<div class="panel panel-flat">
-  							<div class="panel-heading">
-  								<h6 class="panel-title">Actions</h6>
-  								<div class="heading-elements">
-  									<button type="button" class="btn btn-link daterange-ranges heading-btn text-semibold">
-  										<i class="icon-calendar3 position-left"></i> <span></span> <b class="caret"></b>
-  									</button>
-  			                	</div>
-  							</div>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <h6 class="no-margin">12 <small class="display-block text-size-small no-margin">hours</small></h6>
+                                                    </td>
+                                                    <td>
+                                                        <div class="media-left media-middle">
+                                                            <a href="#" class="btn bg-teal-400 btn-rounded btn-icon btn-xs">
+                                                                <span class="letter-icon"></span>
+                                                            </a>
+                                                        </div>
 
-  							<div class="table-responsive">
-  								<table class="table text-nowrap">
-  									<thead>
-  										<tr>
-  											<th style="width: 50px">Due</th>
-  											<th style="width: 300px;">User</th>
-  											<th>Description</th>
-  											<th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
-  										</tr>
-  									</thead>
-  									<tbody>
-  										<tr class="active border-double">
-  											<td colspan="3">Open actions</td>
-  											<td class="text-right">
-  												<span class="badge bg-blue">24</span>
-  											</td>
-  										</tr>
+                                                        <div class="media-body">
+                                                            <a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Annabelle Doney</a>
+                                                            <div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="text-default display-inline-block">
+                                                            <span class="text-semibold">[#1183] Workaround for OS X selects printing bug</span>
+                                                            <span class="display-block text-muted">Chrome fixed the bug several versions ago, thus rendering this...</span>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <ul class="icons-list">
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                                    <li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+                                                                    <li><a href="#"><i class="icon-history"></i> Full history</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
+                                                                    <li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
 
-  										<tr>
-  											<td class="text-center">
-  												<h6 class="no-margin">12 <small class="display-block text-size-small no-margin">hours</small></h6>
-  											</td>
-  											<td>
-  												<div class="media-left media-middle">
-  													<a href="#" class="btn bg-teal-400 btn-rounded btn-icon btn-xs">
-  														<span class="letter-icon"></span>
-  													</a>
-  												</div>
+                                                <tr class="active border-double">
+                                                    <td colspan="3">Closed actions</td>
+                                                    <td class="text-right">
+                                                        <span class="badge bg-success">42</span>
+                                                    </td>
+                                                </tr>
 
-  												<div class="media-body">
-  													<a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Annabelle Doney</a>
-  													<div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
-  												</div>
-  											</td>
-  											<td>
-  												<a href="#" class="text-default display-inline-block">
-  													<span class="text-semibold">[#1183] Workaround for OS X selects printing bug</span>
-  													<span class="display-block text-muted">Chrome fixed the bug several versions ago, thus rendering this...</span>
-  												</a>
-  											</td>
-  											<td class="text-center">
-  												<ul class="icons-list">
-  													<li class="dropdown">
-  														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-  														<ul class="dropdown-menu dropdown-menu-right">
-  															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
-  															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
-  															<li class="divider"></li>
-  															<li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
-  															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
-  														</ul>
-  													</li>
-  												</ul>
-  											</td>
-  										</tr>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <i class="icon-checkmark3 text-success"></i>
+                                                    </td>
+                                                    <td>
+                                                        <div class="media-left media-middle">
+                                                            <a href="#" class="btn bg-success-400 btn-rounded btn-icon btn-xs">
+                                                                <span class="letter-icon"></span>
+                                                            </a>
+                                                        </div>
 
-  										<tr>
-  											<td class="text-center">
-  												<h6 class="no-margin">16 <small class="display-block text-size-small no-margin">hours</small></h6>
-  											</td>
-  											<td>
-  												<div class="media-left media-middle">
-  													<a href="#"><img src="/stylesheets/default/assets/images/placeholder.jpg" class="img-circle img-xs" alt=""></a>
-  												</div>
+                                                        <div class="media-body">
+                                                            <a href="#" class="display-inline-block text-default letter-icon-title">Alan Macedo</a>
+                                                            <div class="text-muted text-size-small"><span class="status-mark border-success position-left"></span> Resolved</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="text-default display-inline-block">
+                              [#1046] Avoid some unnecessary HTML string
+                              <span class="display-block text-muted">Rather than building a string of HTML and then parsing it...</span>
+                            </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <ul class="icons-list">
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                                    <li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+                                                                    <li><a href="#"><i class="icon-history"></i> Full history</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li><a href="#"><i class="icon-plus3 text-blue"></i> Unresolve issue</a></li>
+                                                                    <li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
 
-  												<div class="media-body">
-  													<a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Chris Macintyre</a>
-  													<div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
-  												</div>
-  											</td>
-  											<td>
-  												<a href="#" class="text-default display-inline-block">
-  													<span class="text-semibold">[#1249] Vertically center carousel controls</span>
-  													<span class="display-block text-muted">Try any carousel control and reduce the screen width below...</span>
-  												</a>
-  											</td>
-  											<td class="text-center">
-  												<ul class="icons-list">
-  													<li class="dropdown">
-  														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-  														<ul class="dropdown-menu dropdown-menu-right">
-  															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
-  															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
-  															<li class="divider"></li>
-  															<li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
-  															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
-  														</ul>
-  													</li>
-  												</ul>
-  											</td>
-  										</tr>
+                                                <tr class="active border-double">
+                                                    <td colspan="3">Overdue actions</td>
+                                                    <td class="text-right">
+                                                        <span class="badge bg-danger">37</span>
+                                                    </td>
+                                                </tr>
 
-  										<tr>
-  											<td class="text-center">
-  												<h6 class="no-margin">20 <small class="display-block text-size-small no-margin">hours</small></h6>
-  											</td>
-  											<td>
-  												<div class="media-left media-middle">
-  													<a href="#" class="btn bg-blue btn-rounded btn-icon btn-xs">
-  														<span class="letter-icon"></span>
-  													</a>
-  												</div>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <i class="icon-cross2 text-danger-400"></i>
+                                                    </td>
+                                                    <td>
+                                                        <div class="media-left media-middle">
+                                                            <a href="#"><img src="/stylesheets/default/assets/images/placeholder.jpg" class="img-circle img-xs" alt=""></a>
+                                                        </div>
 
-  												<div class="media-body">
-  													<a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Robert Hauber</a>
-  													<div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
-  												</div>
-  											</td>
-  											<td>
-  												<a href="#" class="text-default display-inline-block">
-  													<span class="text-semibold">[#1254] Inaccurate small pagination height</span>
-  													<span class="display-block text-muted">The height of pagination elements is not consistent with...</span>
-  												</a>
-  											</td>
-  											<td class="text-center">
-  												<ul class="icons-list">
-  													<li class="dropdown">
-  														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-  														<ul class="dropdown-menu dropdown-menu-right">
-  															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
-  															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
-  															<li class="divider"></li>
-  															<li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
-  															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
-  														</ul>
-  													</li>
-  												</ul>
-  											</td>
-  										</tr>
+                                                        <div class="media-body">
+                                                            <a href="#" class="display-inline-block text-default">Mitchell Sitkin</a>
+                                                            <div class="text-muted text-size-small"><span class="status-mark border-danger position-left"></span> Closed</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="text-default display-inline-block">
+                              [#1040] Account for static form controls in form group
+                              <span class="display-block text-muted">Resizes control label's font-size and account for the standard...</span>
+                            </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <ul class="icons-list">
+                                                            <li class="dropup">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                                    <li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
+                                                                    <li><a href="#"><i class="icon-history"></i> Full history</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li><a href="#"><i class="icon-reload-alt text-blue"></i> Reopen issue</a></li>
+                                                                    <li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
 
-  										<tr>
-  											<td class="text-center">
-  												<h6 class="no-margin">40 <small class="display-block text-size-small no-margin">hours</small></h6>
-  											</td>
-  											<td>
-  												<div class="media-left media-middle">
-  													<a href="#" class="btn bg-warning-400 btn-rounded btn-icon btn-xs">
-  														<span class="letter-icon"></span>
-  													</a>
-  												</div>
+                                    </tbody>
+                                </table> -->
+                        </div>
+                        <!-- /All Actions -->
 
-  												<div class="media-body">
-  													<a href="#" class="display-inline-block text-default text-semibold letter-icon-title">Dex Sponheim</a>
-  													<div class="text-muted text-size-small"><span class="status-mark border-blue position-left"></span> Active</div>
-  												</div>
-  											</td>
-  											<td>
-  												<a href="#" class="text-default display-inline-block">
-  													<span class="text-semibold">[#1184] Round grid column gutter operations</span>
-  													<span class="display-block text-muted">Left rounds up, right rounds down. should keep everything...</span>
-  												</a>
-  											</td>
-  											<td class="text-center">
-  												<ul class="icons-list">
-  													<li class="dropdown">
-  														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-  														<ul class="dropdown-menu dropdown-menu-right">
-  															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
-  															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
-  															<li class="divider"></li>
-  															<li><a href="#"><i class="icon-checkmark3 text-success"></i> Resolve issue</a></li>
-  															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
-  														</ul>
-  													</li>
-  												</ul>
-  											</td>
-  										</tr>
+                    </div>
+                    <!--/Container 3 -->
 
-  										<tr class="active border-double">
-  											<td colspan="3">Closed actions</td>
-  											<td class="text-right">
-  												<span class="badge bg-success">42</span>
-  											</td>
-  										</tr>
+                </div>
+                <!-- /main charts -->
 
-  										<tr>
-  											<td class="text-center">
-  												<i class="icon-checkmark3 text-success"></i>
-  											</td>
-  											<td>
-  												<div class="media-left media-middle">
-  													<a href="#" class="btn bg-success-400 btn-rounded btn-icon btn-xs">
-  														<span class="letter-icon"></span>
-  													</a>
-  												</div>
 
-  												<div class="media-body">
-  													<a href="#" class="display-inline-block text-default letter-icon-title">Alan Macedo</a>
-  													<div class="text-muted text-size-small"><span class="status-mark border-success position-left"></span> Resolved</div>
-  												</div>
-  											</td>
-  											<td>
-  												<a href="#" class="text-default display-inline-block">
-  													[#1046] Avoid some unnecessary HTML string
-  													<span class="display-block text-muted">Rather than building a string of HTML and then parsing it...</span>
-  												</a>
-  											</td>
-  											<td class="text-center">
-  												<ul class="icons-list">
-  													<li class="dropdown">
-  														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-  														<ul class="dropdown-menu dropdown-menu-right">
-  															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
-  															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
-  															<li class="divider"></li>
-  															<li><a href="#"><i class="icon-plus3 text-blue"></i> Unresolve issue</a></li>
-  															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
-  														</ul>
-  													</li>
-  												</ul>
-  											</td>
-  										</tr>
 
-  										<tr>
-  											<td class="text-center">
-  												<i class="icon-checkmark3 text-success"></i>
-  											</td>
-  											<td>
-  												<div class="media-left media-middle">
-  													<a href="#" class="btn bg-pink-400 btn-rounded btn-icon btn-xs">
-  														<span class="letter-icon"></span>
-  													</a>
-  												</div>
+            </div>
+            <!-- /main content -->
 
-  												<div class="media-body">
-  													<a href="#" class="display-inline-block text-default letter-icon-title">Brett Castellano</a>
-  													<div class="text-muted text-size-small"><span class="status-mark border-success position-left"></span> Resolved</div>
-  												</div>
-  											</td>
-  											<td>
-  												<a href="#" class="text-default display-inline-block">
-  													[#1038] Update json configuration
-  													<span class="display-block text-muted">The <code>files</code> property is necessary to override the files property...</span>
-  												</a>
-  											</td>
-  											<td class="text-center">
-  												<ul class="icons-list">
-  													<li class="dropdown">
-  														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-  														<ul class="dropdown-menu dropdown-menu-right">
-  															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
-  															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
-  															<li class="divider"></li>
-  															<li><a href="#"><i class="icon-plus3 text-blue"></i> Unresolve issue</a></li>
-  															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
-  														</ul>
-  													</li>
-  												</ul>
-  											</td>
-  										</tr>
+        </div>
+        <!-- /page content -->
 
-  										<tr>
-  											<td class="text-center">
-  												<i class="icon-checkmark3 text-success"></i>
-  											</td>
-  											<td>
-  												<div class="media-left media-middle">
-  													<a href="#"><img src="/stylesheets/default/assets/images/placeholder.jpg" class="img-circle img-xs" alt=""></a>
-  												</div>
-
-  												<div class="media-body">
-  													<a href="#" class="display-inline-block text-default">Roxanne Forbes</a>
-  													<div class="text-muted text-size-small"><span class="status-mark border-success position-left"></span> Resolved</div>
-  												</div>
-  											</td>
-  											<td>
-  												<a href="#" class="text-default display-inline-block">
-  													[#1034] Tooltip multiple event
-  													<span class="display-block text-muted">Fix behavior when using tooltips and popovers that are...</span>
-  												</a>
-  											</td>
-  											<td class="text-center">
-  												<ul class="icons-list">
-  													<li class="dropdown">
-  														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-  														<ul class="dropdown-menu dropdown-menu-right">
-  															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
-  															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
-  															<li class="divider"></li>
-  															<li><a href="#"><i class="icon-plus3 text-blue"></i> Unresolve issue</a></li>
-  															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
-  														</ul>
-  													</li>
-  												</ul>
-  											</td>
-  										</tr>
-
-  										<tr class="active border-double">
-  											<td colspan="3">Overdue actions</td>
-  											<td class="text-right">
-  												<span class="badge bg-danger">37</span>
-  											</td>
-  										</tr>
-
-  										<tr>
-  											<td class="text-center">
-  												<i class="icon-cross2 text-danger-400"></i>
-  											</td>
-  											<td>
-  												<div class="media-left media-middle">
-  													<a href="#"><img src="/stylesheets/default/assets/images/placeholder.jpg" class="img-circle img-xs" alt=""></a>
-  												</div>
-
-  												<div class="media-body">
-  													<a href="#" class="display-inline-block text-default">Mitchell Sitkin</a>
-  													<div class="text-muted text-size-small"><span class="status-mark border-danger position-left"></span> Closed</div>
-  												</div>
-  											</td>
-  											<td>
-  												<a href="#" class="text-default display-inline-block">
-  													[#1040] Account for static form controls in form group
-  													<span class="display-block text-muted">Resizes control label's font-size and account for the standard...</span>
-  												</a>
-  											</td>
-  											<td class="text-center">
-  												<ul class="icons-list">
-  													<li class="dropup">
-  														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-  														<ul class="dropdown-menu dropdown-menu-right">
-  															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
-  															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
-  															<li class="divider"></li>
-  															<li><a href="#"><i class="icon-reload-alt text-blue"></i> Reopen issue</a></li>
-  															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
-  														</ul>
-  													</li>
-  												</ul>
-  											</td>
-  										</tr>
-
-  										<tr>
-  											<td class="text-center">
-  												<i class="icon-cross2 text-danger"></i>
-  											</td>
-  											<td>
-  												<div class="media-left media-middle">
-  													<a href="#" class="btn bg-brown-400 btn-rounded btn-icon btn-xs">
-  														<span class="letter-icon"></span>
-  													</a>
-  												</div>
-
-  												<div class="media-body">
-  													<a href="#" class="display-inline-block text-default letter-icon-title">Katleen Jensen</a>
-  													<div class="text-muted text-size-small"><span class="status-mark border-danger position-left"></span> Closed</div>
-  												</div>
-  											</td>
-  											<td>
-  												<a href="#" class="text-default display-inline-block">
-  													[#1038] Proper sizing of form control feedback
-  													<span class="display-block text-muted">Feedback icon sizing inside a larger/smaller form-group...</span>
-  												</a>
-  											</td>
-  											<td class="text-center">
-  												<ul class="icons-list">
-  													<li class="dropup">
-  														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-  														<ul class="dropdown-menu dropdown-menu-right">
-  															<li><a href="#"><i class="icon-undo"></i> Quick reply</a></li>
-  															<li><a href="#"><i class="icon-history"></i> Full history</a></li>
-  															<li class="divider"></li>
-  															<li><a href="#"><i class="icon-plus3 text-blue"></i> Unresolve issue</a></li>
-  															<li><a href="#"><i class="icon-cross2 text-danger"></i> Close issue</a></li>
-  														</ul>
-  													</li>
-  												</ul>
-  											</td>
-  										</tr>
-  									</tbody>
-  								</table>
-  							</div>
-  						</div>
-  						<!-- /support tickets -->
-
-  					</div>
-
-  				</div>
-  				<!-- /dashboard content -->
-
-  			</div>
-  			<!-- /main content -->
-
-  		</div>
-  		<!-- /page content -->
-
-  	</div>
-  	<!-- /page container -->
+    </div>
+    <!-- /page container -->
 
 
 
