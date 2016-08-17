@@ -13,8 +13,10 @@ var request = require('request');
 var usr = [100];
 var acts = [100];
 //respond with "hello" when a GET request is made to the page localhost:3000/users
-router.get('/', function(req, res, next) {
+// router.get('/', function(req, res, next) {
+router.get('/jscid/:jscId', function(req, res, next) {
 
+  console.log("jscId is set to " + req.params.jscId);
     // var options = { method: 'POST',
     //   url: 'http://localhost:1337/Users/list_info',
     //   // headers:
@@ -40,11 +42,35 @@ router.get('/', function(req, res, next) {
     //   });
     // });
 
+
+    //var jscid_input = "vking";
+    // var jscid_input = "vking";
+    //
+    // if(req.params.jscId == ""){
+    //   console.log("jscId is null");
+    // }
+    // else{
+    //   jscid_input = req.params.jscId;
+    //   jscid_input = jscid_input.toString();
+    // }
+
     async.waterfall([
       function(callback){
+        var jscid_input = "mfriske";
+        if(req.params.jscId == ""){
+          console.log("jscId is null");
+        }
+        else{
+          jscid_input = req.params.jscId;
+          jscid_input = jscid_input.toString();
+        }
+        callback(null, jscid_input);
+
+      },
+      function(jscid_input, callback){
         var user_options = { method: 'POST',
           url: 'http://localhost:1337/Users/list_info',
-          formData: { JSCID: 'vking' } };
+          formData: { JSCID: jscid_input } };
 
           request(user_options, function (error, response, body) {
             if (error) throw new Error(error);

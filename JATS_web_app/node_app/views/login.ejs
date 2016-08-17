@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <!-- Global stylesheets -->
+    <link href="/stylesheets/default/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/default/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/default/assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/default/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/default/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+
+    <!-- Core JS files -->
+  	<script type="text/javascript" src="/stylesheets/default/assets/js/plugins/loaders/pace.min.js"></script>
+  	<script type="text/javascript" src="/stylesheets/default/assets/js/core/libraries/jquery.min.js"></script>
+  	<script type="text/javascript" src="/stylesheets/default/assets/js/core/libraries/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="/stylesheets/default/assets/js/plugins/loaders/blockui.min.js"></script>
+  	<script type="text/javascript" src="/stylesheets/default/assets/js/plugins/ui/nicescroll.min.js"></script>
+  	<script type="text/javascript" src="/stylesheets/default/assets/js/plugins/ui/drilldown.js"></script>
+  	<!-- /core JS files -->
+
+  	<!-- Theme JS files -->
+    <script type="text/javascript" src="/stylesheets/default/assets/js/core/app.js"></script>
+    <!-- /theme JS files -->
+
+    <!-- Added by Brandon Quiocho -->
+
+    <style>
+
+    body{
+      padding: 0px;
+    }
+    </style>
+
+  </head>
+
+
+  <body class="login-container">
+
+  	<!-- Main navbar -->
+  	<div class="navbar navbar-inverse" id="primary-navbar">
+  		<div class="navbar-header">
+  			<a class="navbar-brand">
+  				<img src="/stylesheets/default/assets/images/logo_light.png" alt="">
+  			</a>
+
+  		</div>
+
+  	</div>
+  	<!-- /main navbar -->
+
+
+  	<!-- Page container -->
+  	<div class="page-container">
+
+  		<!-- Page content -->
+  		<div class="page-content">
+
+  			<!-- Main content -->
+  			<div class="content-wrapper">
+
+  				<!-- Simple login form -->
+  				<form name="input" action="users/jscid/mfriske" method="post">
+  					<div class="panel panel-body login-form">
+  						<div class="text-center">
+  							<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+  							<h5 class="content-group">Login to your account <small class="display-block">Enter your credentials below</small></h5>
+  						</div>
+
+  						<div class="form-group has-feedback has-feedback-left">
+  							<input type="text" class="form-control" id="jsc_username" name="jsc_username" placeholder="Username">
+  							<div class="form-control-feedback">
+  								<i class="icon-user text-muted input-icons"></i>
+  							</div>
+  						</div>
+
+  						<div class="form-group has-feedback has-feedback-left">
+  							<input type="password" class="form-control" name="jsc_password" placeholder="Password">
+  							<div class="form-control-feedback">
+  								<i class="icon-lock2 text-muted input-icons"></i>
+  							</div>
+  						</div>
+
+  						<div class="form-group">
+  							<button type="submit" id="submit" name="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
+  						</div>
+
+  						 <div class="text-center">
+  							<a href="login_password_recover.html">Forgot password?</a>
+  						</div>
+  					</div>
+  				</form>
+  				<!-- /simple login form -->
+
+  			</div>
+  			<!-- /main content -->
+
+  		</div>
+  		<!-- /page content -->
+
+  	</div>
+  	<!-- /page container -->
+
+
+  	<!-- Footer -->
+  	<div class="footer text-muted text-center">
+  		&copy; 2016 <a href="d0230.tietronix.com:3000/users/jscid/vking" target="_blank">Tietronix Software Inc.</a>
+  	</div>
+  	<!-- /footer -->
+
+    <!-- <a href="d0230.tietronix.com:3000/users/jscid/vking" target="_blank" onClick="openWindowReload(this)">Click here</a>
+      <script>
+			function openWindowReload(link) {
+				var href = link.href;
+				window.open(href,'_blank');
+				document.location.reload(true)
+			}
+		  </script> -->
+
+  	<script type="text/javascript">
+  			document.getElementById("jsc_username").focus();
+  	</script>
+
+  </body>
+</html>
