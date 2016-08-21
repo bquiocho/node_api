@@ -425,6 +425,7 @@
                                     <tr>
                                         <th>Number</th>
                                         <th>Originator</th>
+                                        <th>Creator</th>
                                         <th>Title</th>
                                         <th>Due Date</th>
                                         <th>Status</th>
@@ -432,38 +433,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <% actions.forEach(function(action) { %>
-                                        <tr>
-                                            <td>
-                                                <%=action.ActionID%>
-                                            </td>
-                                            <td>
-                                                <%=action.Originator%>
-                                            </td>
-                                            <td>
-                                                <%=action.Title%>
-                                            </td>
-                                            <td>
-                                                <%=action.DueDate%>
-                                            </td>
-                                            <td><span class="label label-success"><%=action.Status%></span></td>
-                                            <td class="text-center">
-                                                <ul class="icons-list">
-                                                    <li class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                            <i class="icon-menu9"></i>
-                                                        </a>
-
-                                                        <ul class="dropdown-menu dropdown-menu-right">
-                                                            <li><a href="#"><i class="icon-file-pdf"></i> Open</a></li>
-                                                            <li><a href="#"><i class="icon-file-excel"></i> Update</a></li>
-                                                            <li><a href="#"><i class="icon-file-word"></i> Complete</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        <% }); %> -->
 
                                             <% for(var i=0; i < actions.length; i++) { %>
                                               <tr>
@@ -472,6 +441,9 @@
                                                   </td>
                                                   <td>
                                                       <%=actions[i].Originator%>
+                                                  </td>
+                                                  <td>
+                                                      <%=actions[i].Creator%>
                                                   </td>
                                                   <td>
                                                       <%=actions[i].Title%>
@@ -843,31 +815,35 @@
                             <table class="table datatable-basic">
                                 <thead>
                                     <tr>
-                                        <th>Number</th>
-                                        <th>Originator</th>
-                                        <th>Due Date</th>
-                                        <th>Status</th>
+                                        <th>Action ID</th>
+                                        <th>Assignees</th>
+                                        <th>Assigned Date</th>
+                                        <th>Assigned Time</th>
+                                        <th>Current Status</th>
                                         <th class="text-center">Tools</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                            <% for(var i=0; i < actions.length; i++) { %>
+                                            <% for(var i=0; i < assigned.length; i++) { %>
                                               <tr>
                                                   <td>
-                                                      <%=actions[i].ActionID%>
+                                                      <%=assigned[i].ActionID%>
                                                   </td>
                                                   <td>
-                                                      <%=actions[i].Originator%>
+                                                      <%=assigned[i].Assignees%>
                                                   </td>
                                                   <td>
-                                                      <%=actions[i].DueDate%>
+                                                      <%=assigned[i].AssignedDate%>
+                                                  </td>
+                                                  <td>
+                                                      <%=assigned[i].AssignedTime%>
                                                   </td>
 
-                                                  <% if(actions[i].Status==6 || actions[i].Status==7 || actions[i].Status==8 || actions[i].Status==9 || actions[i].Status==10){ %>
-                                                  <td><span class="label label-danger"><%=status[actions[i].Status].Status%></span></td>
+                                                  <% if(assigned[i].StatusID==6 || assigned[i].StatusID==7 || assigned[i].StatusID==8 || assigned[i].StatusID==9 || assigned[i].StatusID==10){ %>
+                                                  <td><span class="label label-danger"><%=status[assigned[i].StatusID].Status%></span></td>
                                                   <% } else{ %>
-                                                  <td><span class="label label-success"><%=status[actions[i].Status].Status%></span></td>
+                                                  <td><span class="label label-success"><%=status[assigned[i].StatusID].Status%></span></td>
                                                   <% } %>
                                                   <td class="text-center">
                                                       <ul class="icons-list">

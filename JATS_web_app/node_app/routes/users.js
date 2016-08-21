@@ -90,6 +90,20 @@ router.get('/jscid/:jscId', function(req, res, next) {
 
           });
       },
+      // from get status
+      function(temp, roles, stats, callback){
+        var action_options = { method: 'POST',
+          url: 'http://localhost:1337/ActionAssigns/list_info',
+          formData: { UID: usr[0].UID } };
+
+          request(action_options, function (error, response, body) {
+            if (error) throw new Error(error);
+
+            asgn = JSON.parse(body);
+            callback(null, acts, roles, stats, asgn);
+
+          });
+      },
 
     ],
     function (err, result){
@@ -100,6 +114,7 @@ router.get('/jscid/:jscId', function(req, res, next) {
           actions: acts,
           user_roles : roles,
           status: stats,
+          assigned: asgn
       });
     }
   );
