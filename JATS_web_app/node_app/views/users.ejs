@@ -2,6 +2,9 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         <%= title %>
     </title>
@@ -48,7 +51,7 @@
 
 </head>
 
-<body>
+<body class="">
     <!-- <h1><%= title %></h1> -->
 
     <!-- Main navbar -->
@@ -254,63 +257,73 @@
                             </div>
 
                             <div class="panel-body">
-                                <form class="form-horizontal" action="#">
-                                    <% user.forEach(function(item) { %>
-                                        <div class="form-group">
-                                            <label class="control-label col-lg-2">Name:</label>
-                                            <label class="control-label col-lg-6">
-                                                <%= item.FName %>
-                                                    <%= item.LName %>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-lg-2">Title:</label>
-                                            <label class="control-label col-lg-6">
-                                                <%= item.Title %>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-lg-2">Center:</label>
-                                            <label class="control-label col-lg-6">
-                                                <%= item.CenterID %>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-lg-2">Org Code:</label>
-                                            <label class="control-label col-lg-6">
-                                                <%= item.Org %>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-lg-2">Email:</label>
-                                            <label class="control-label col-lg-6">
-                                                <%= item.Email %>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-lg-2">Role:</label>
-                                            <label class="control-label col-lg-6">
-                                                <%= item.Role %>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-lg-2">Group(s):</label>
-                                            <label class="control-label col-lg-6">
-                                                <%= item.GID %>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-lg-2">JSC User ID:</label>
-                                            <label class="control-label col-lg-6">
-                                                <%= item.JSCID %>
-                                            </label>
-                                        </div>
-                                        <% }); %>
 
-                                            <!-- <div class="text-right">
-                              <button type="submit" class="btn btn-primary">Submit form <i class="icon-arrow-right14 position-right"></i></button>
-                            </div> -->
-                                </form>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <!-- <thead>
+                                    <tr>
+                                      <th></th>
+                                      <th></th>
+                                    </tr>
+                                  </thead> -->
+                                        <tbody>
+                                            <% user.forEach(function(item) { %>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>
+                                                        <%= item.FName %>
+                                                            <%= item.LName %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Title</td>
+                                                    <td>
+                                                        <%= item.Title %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Center</td>
+                                                    <td>
+                                                        <%= item.CenterID %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Org Code</td>
+                                                    <td>
+                                                        <%= item.Org %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email</td>
+                                                    <td>
+                                                        <%= item.Email %>
+                                                    </td>
+                                                </tr>
+                                                <% user_roles.forEach(function(item) { %>
+                                                    <tr>
+                                                        <td>Role</td>
+                                                        <td>
+                                                            <%= item.Role %>
+                                                        </td>
+                                                    </tr>
+                                                    <% }); %>
+                                                        <tr>
+                                                            <td>Groups</td>
+                                                            <td>
+                                                                <%= item.GID %>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>JSCID</td>
+                                                            <td>
+                                                                <%= item.JSCID %>
+                                                            </td>
+                                                        </tr>
+                                                        <% }); %>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
 
@@ -394,12 +407,12 @@
                     <!--/Container 1 -->
 
                     <!--Container 2 -->
-                    <div id="all_actions_panel" class="col-lg-8">
+                    <div id="actions_assigned_panel" class="col-lg-8">
 
                         <!-- All Actions -->
                         <div class="panel panel-flat">
                             <div class="panel-heading">
-                                <h6 class="panel-title">All Actions (assigned to me)</h6>
+                                <h6 class="panel-title">All Actions (assigned to others)</h6>
                                 <div class="heading-elements">
                                     <!-- <button type="button" class="btn btn-link daterange-ranges heading-btn text-semibold">
                                         <i class="icon-calendar3 position-left"></i> <span></span> <b class="caret"></b>
@@ -407,47 +420,93 @@
                                 </div>
                             </div>
 
-                              <table class="table datatable-basic">
+                            <table class="table datatable-basic">
                                 <thead>
-                                  <tr>
-                                    <th>Number</th>
-                                    <th>Originator</th>
-                                    <th>Title</th>
-                                    <th>Due Date</th>
-                                    <th>Status</th>
-                                    <th class="text-center">Tools</th>
-                                  </tr>
+                                    <tr>
+                                        <th>Number</th>
+                                        <th>Originator</th>
+                                        <th>Title</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th class="text-center">Tools</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                  <% actions.forEach(function(action) { %>
-                                    <tr>
-                                      <td><%=action.ActionID%></td>
-                                      <td><%=action.Originator%></td>
-                                      <td><%=action.Title%></td>
-                                      <td><%=action.DueDate%></td>
-                                      <td><span class="label label-success"><%=action.Status%></span></td>
-                                      <td class="text-center">
-                                        <ul class="icons-list">
-                                          <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                              <i class="icon-menu9"></i>
-                                            </a>
+                                    <!-- <% actions.forEach(function(action) { %>
+                                        <tr>
+                                            <td>
+                                                <%=action.ActionID%>
+                                            </td>
+                                            <td>
+                                                <%=action.Originator%>
+                                            </td>
+                                            <td>
+                                                <%=action.Title%>
+                                            </td>
+                                            <td>
+                                                <%=action.DueDate%>
+                                            </td>
+                                            <td><span class="label label-success"><%=action.Status%></span></td>
+                                            <td class="text-center">
+                                                <ul class="icons-list">
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                            <i class="icon-menu9"></i>
+                                                        </a>
 
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                              <li><a href="#"><i class="icon-file-pdf"></i> Open</a></li>
-                                              <li><a href="#"><i class="icon-file-excel"></i> Update</a></li>
-                                              <li><a href="#"><i class="icon-file-word"></i> Complete</a></li>
-                                            </ul>
-                                          </li>
-                                        </ul>
-                                      </td>
-                                    </tr>
-                                      <% }); %>
+                                                        <ul class="dropdown-menu dropdown-menu-right">
+                                                            <li><a href="#"><i class="icon-file-pdf"></i> Open</a></li>
+                                                            <li><a href="#"><i class="icon-file-excel"></i> Update</a></li>
+                                                            <li><a href="#"><i class="icon-file-word"></i> Complete</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <% }); %> -->
+
+                                            <% for(var i=0; i < actions.length; i++) { %>
+                                              <tr>
+                                                  <td>
+                                                      <%=actions[i].ActionID%>
+                                                  </td>
+                                                  <td>
+                                                      <%=actions[i].Originator%>
+                                                  </td>
+                                                  <td>
+                                                      <%=actions[i].Title%>
+                                                  </td>
+                                                  <td>
+                                                      <%=actions[i].DueDate%>
+                                                  </td>
+
+                                                  <% if(actions[i].Status==6 || actions[i].Status==7 || actions[i].Status==8 || actions[i].Status==9 || actions[i].Status==10){ %>
+                                                  <td><span class="label label-danger"><%=status[actions[i].Status].Status%></span></td>
+                                                  <% } else{ %>
+                                                  <td><span class="label label-success"><%=status[actions[i].Status].Status%></span></td>
+                                                  <% } %>
+                                                  <td class="text-center">
+                                                      <ul class="icons-list">
+                                                          <li class="dropdown">
+                                                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                  <i class="icon-menu9"></i>
+                                                              </a>
+
+                                                              <ul class="dropdown-menu dropdown-menu-right">
+                                                                  <li><a href="#"><i class="icon-file-pdf"></i> Open</a></li>
+                                                                  <li><a href="#"><i class="icon-file-excel"></i> Update</a></li>
+                                                                  <li><a href="#"><i class="icon-file-word"></i> Complete</a></li>
+                                                              </ul>
+                                                          </li>
+                                                      </ul>
+                                                  </td>
+                                              </tr>
+                                                <% } %>
 
                                 </tbody>
-                              </table>
+                            </table>
 
-                                <!-- <table class="table datatable-actions table-hover table-striped">
+                            <!-- <table class="table datatable-actions table-hover table-striped">
                                     <thead>
                                         <tr>
                                             <th style="width: 50px">No.</th>
@@ -763,6 +822,76 @@
                                 </table> -->
                         </div>
                         <!-- /All Actions -->
+
+                    </div>
+                    <!--/Container 2 -->
+
+                    <!--Container 2 -->
+                    <div id="actions_assignee_panel" class="col-lg-8">
+
+                        <!-- All Actions -->
+                        <div class="panel panel-flat">
+                            <div class="panel-heading">
+                                <h6 class="panel-title">All Actions (assigned to me)</h6>
+                                <div class="heading-elements">
+                                    <!-- <button type="button" class="btn btn-link daterange-ranges heading-btn text-semibold">
+                                        <i class="icon-calendar3 position-left"></i> <span></span> <b class="caret"></b>
+                                    </button> -->
+                                </div>
+                            </div>
+
+                            <table class="table datatable-basic">
+                                <thead>
+                                    <tr>
+                                        <th>Number</th>
+                                        <th>Originator</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th class="text-center">Tools</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                            <% for(var i=0; i < actions.length; i++) { %>
+                                              <tr>
+                                                  <td>
+                                                      <%=actions[i].ActionID%>
+                                                  </td>
+                                                  <td>
+                                                      <%=actions[i].Originator%>
+                                                  </td>
+                                                  <td>
+                                                      <%=actions[i].DueDate%>
+                                                  </td>
+
+                                                  <% if(actions[i].Status==6 || actions[i].Status==7 || actions[i].Status==8 || actions[i].Status==9 || actions[i].Status==10){ %>
+                                                  <td><span class="label label-danger"><%=status[actions[i].Status].Status%></span></td>
+                                                  <% } else{ %>
+                                                  <td><span class="label label-success"><%=status[actions[i].Status].Status%></span></td>
+                                                  <% } %>
+                                                  <td class="text-center">
+                                                      <ul class="icons-list">
+                                                          <li class="dropdown">
+                                                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                  <i class="icon-menu9"></i>
+                                                              </a>
+
+                                                              <ul class="dropdown-menu dropdown-menu-right">
+                                                                  <li><a href="#"><i class="icon-file-pdf"></i> Open</a></li>
+                                                                  <li><a href="#"><i class="icon-file-excel"></i> Update</a></li>
+                                                                  <li><a href="#"><i class="icon-file-word"></i> Complete</a></li>
+                                                              </ul>
+                                                          </li>
+                                                      </ul>
+                                                  </td>
+                                              </tr>
+                                                <% } %>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <!-- /All Actions assigned to me-->
 
                     </div>
                     <!--/Container 2 -->
