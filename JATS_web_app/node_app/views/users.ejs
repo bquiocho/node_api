@@ -44,6 +44,9 @@
     <script type="text/javascript" src="/js/jats.js"></script>
     <script type="text/javascript" src="/stylesheets/default/assets/js/pages/datatables_basic.js"></script>
 
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/tables/footable/footable.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/pages/table_responsive.js"></script>
+
     <!-- app.js giving error -->
     <script type="text/javascript" src="/stylesheets/default/assets/js/core/app.js"></script>
     <script type="text/javascript" src="/stylesheets/default/assets/js/pages/dashboard.js"></script>
@@ -247,13 +250,6 @@
                         <div class="panel panel-flat">
                             <div class="panel-heading">
                                 <h5 class="panel-title">My Info</h5>
-                                <div class="heading-elements">
-                                    <ul class="icons-list">
-                                        <li>
-                                            <a data-action="collapse"></a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
 
                             <div class="panel-body">
@@ -328,7 +324,7 @@
                         </div>
 
                     </div>
-                    <!--/Container 1 -->
+
 
                     <!--Container 2 -->
                     <div id="actions_assigned_panel" class="col-lg-8">
@@ -337,22 +333,17 @@
                         <div class="panel panel-flat">
                             <div class="panel-heading">
                                 <h6 class="panel-title">All Actions (assigned to others)</h6>
-                                <div class="heading-elements">
-                                    <!-- <button type="button" class="btn btn-link daterange-ranges heading-btn text-semibold">
-                                        <i class="icon-calendar3 position-left"></i> <span></span> <b class="caret"></b>
-                                    </button> -->
-                                </div>
                             </div>
 
-                            <table class="table datatable-basic">
+                            <table class="table datatable-basic table-togglable">
                                 <thead>
                                     <tr>
-                                        <th>Number</th>
-                                        <th>Originator</th>
-                                        <th>Creator</th>
-                                        <th>Title</th>
-                                        <th>Due Date</th>
-                                        <th>Status</th>
+                                        <th data-toggle="true">Action ID</th>
+                                        <th data-hide="phone">Originator</th>
+                                        <th data-hide="phone">Creator</th>
+                                        <th data-hide="phone">Title</th>
+                                        <th data-hide="phone">Due Date</th>
+                                        <th data-hide="phone">Status</th>
                                         <th class="text-center">Tools</th>
                                     </tr>
                                 </thead>
@@ -409,6 +400,11 @@
                     </div>
                     <!--/Container 2 -->
 
+                    <!--/Container 1 -->
+                    <div id="quick_summary_panel" class="col-lg-4">
+                      &nbsp;
+                    </div>
+
                     <!--Container 3 -->
                     <div id="actions_assignee_panel" class="col-lg-8">
 
@@ -416,21 +412,16 @@
                         <div class="panel panel-flat">
                             <div class="panel-heading">
                                 <h6 class="panel-title">All Actions (assigned to me)</h6>
-                                <div class="heading-elements">
-                                    <!-- <button type="button" class="btn btn-link daterange-ranges heading-btn text-semibold">
-                                        <i class="icon-calendar3 position-left"></i> <span></span> <b class="caret"></b>
-                                    </button> -->
-                                </div>
                             </div>
 
-                            <table class="table datatable-basic">
+                            <table class="table datatable-basic table-togglable">
                                 <thead>
                                     <tr>
-                                        <th>Action ID</th>
-                                        <th>Assignees</th>
-                                        <th>Assigned Date</th>
-                                        <th>Assigned Time</th>
-                                        <th>Current Status</th>
+                                        <th data-toggle="true">Action ID</th>
+                                        <th data-hide="phone">Assignees</th>
+                                        <th data-hide="phone">Assigned Date</th>
+                                        <th data-hide="phone">Assigned Time</th>
+                                        <th data-hide="phone">Current Status</th>
                                         <th class="text-center">Tools</th>
                                     </tr>
                                 </thead>
@@ -484,24 +475,22 @@
                     <!--/Container 3 -->
 
                     <!--Container 4 -->
-                    <div id="actions_open_panel" class="col-lg-8">
+                    <div id="actions_open_panel" class="col-lg-8 initial_hidden_panel">
 
                         <!-- All Actions -->
                         <div class="panel panel-flat">
                             <div class="panel-heading">
                                 <h6 class="panel-title">Open Actions (assigned to me)</h6>
-                                <div class="heading-elements">
-                                </div>
                             </div>
 
-                            <table class="table datatable-basic">
+                            <table class="table datatable-basic table-togglable">
                                 <thead>
                                     <tr>
-                                        <th>Action ID</th>
-                                        <th>Assignees</th>
-                                        <th>Assigned Date</th>
-                                        <th>Assigned Time</th>
-                                        <th>Current Status</th>
+                                        <th data-toggle="true">Action ID</th>
+                                        <th data-hide="phone">Assignees</th>
+                                        <th data-hide="phone">Assigned Date</th>
+                                        <th data-hide="phone">Assigned Time</th>
+                                        <th data-hide="phone">Current Status</th>
                                         <th class="text-center">Tools</th>
                                     </tr>
                                 </thead>
@@ -555,24 +544,22 @@
                     <!--/Container 4 -->
 
                     <!--Container 5 -->
-                    <div id="actions_closed_panel" class="col-lg-8">
+                    <div id="actions_closed_panel" class="col-lg-8 initial_hidden_panel">
 
                         <!-- All Actions -->
                         <div class="panel panel-flat">
                             <div class="panel-heading">
                                 <h6 class="panel-title">Closed Actions (assigned to me)</h6>
-                                <div class="heading-elements">
-                                </div>
                             </div>
 
-                            <table class="table datatable-basic">
+                            <table class="table datatable-basic table-togglable">
                                 <thead>
                                     <tr>
-                                        <th>Action ID</th>
-                                        <th>Assignees</th>
-                                        <th>Assigned Date</th>
-                                        <th>Assigned Time</th>
-                                        <th>Current Status</th>
+                                        <th data-toggle="true">Action ID</th>
+                                        <th data-hide="phone">Assignees</th>
+                                        <th data-hide="phone">Assigned Date</th>
+                                        <th data-hide="phone">Assigned Time</th>
+                                        <th data-hide="phone">Current Status</th>
                                         <th class="text-center">Tools</th>
                                     </tr>
                                 </thead>
@@ -627,24 +614,22 @@
                     <!--/Container 5 -->
 
                     <!--Container 6 -->
-                    <div id="actions_info_panel" class="col-lg-8">
+                    <div id="actions_info_panel" class="col-lg-8 initial_hidden_panel">
 
                         <!-- All Actions -->
                         <div class="panel panel-flat">
                             <div class="panel-heading">
                                 <h6 class="panel-title">Info Only (assigned to me)</h6>
-                                <div class="heading-elements">
-                                </div>
                             </div>
 
-                            <table class="table datatable-basic">
+                            <table class="table datatable-basic table-togglable">
                                 <thead>
                                     <tr>
-                                        <th>Action ID</th>
-                                        <th>Assignees</th>
-                                        <th>Assigned Date</th>
-                                        <th>Assigned Time</th>
-                                        <th>Current Status</th>
+                                        <th data-toggle="true">Action ID</th>
+                                        <th data-hide="phone">Assignees</th>
+                                        <th data-hide="phone">Assigned Date</th>
+                                        <th data-hide="phone">Assigned Time</th>
+                                        <th data-hide="phone">Current Status</th>
                                         <th class="text-center">Tools</th>
                                     </tr>
                                 </thead>

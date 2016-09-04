@@ -34,7 +34,7 @@ module.exports = {
             //console.log("Array[" + i + "] Action ID: " + actionsArray[i].ActionID);
             actions_temp[i] = actionsArray[i].ActionID;
             if(i == actionsArray.length-1){
-              console.log("finished copying array");
+              sails.log("Finished copying array");
               callback(null, actions_temp);
             }
           }

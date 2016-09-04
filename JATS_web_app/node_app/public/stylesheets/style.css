@@ -1,16 +1,22 @@
 body {
-  /*padding: 50px;*/
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    /*padding: 50px;*/
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
-
 li {
-  padding-left: 10px;
+    padding-left: 10px;
+}
+ul {
+    float: left;
+}
+@media (max-width: 1024px) {
+.datatable-scroll td {
+        white-space: normal !important;
+    }
 }
 
-ul{
-  float: left;
+.initial_hidden_panel {
+  display: none;
 }
