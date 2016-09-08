@@ -1,9 +1,727 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <link rel='shortcut icon' type='image/x-icon' href='/stylesheets/default/assets/images/appicon.ico' />
+
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/default/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/default/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/default/assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/default/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/default/assets/css/colors.css" rel="stylesheet" type="text/css">
+
+    <!-- Core JS files -->
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/ui/nicescroll.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/ui/drilldown.js"></script>
+    <!-- /core JS files -->
+
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/visualization/d3/d3.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/forms/styling/switchery.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/pickers/daterangepicker.js"></script>
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/pages/datatables_basic.js"></script>
+
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/tables/footable/footable.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/pages/table_responsive.js"></script>
+
+    <!-- app.js giving error -->
+    <script type="text/javascript" src="/stylesheets/default/assets/js/core/app.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/pages/dashboard.js"></script>
+
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/ui/fullcalendar/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/default/assets/js/pages/extra_fullcalendar.js"></script>
+
+    <script type="text/javascript" src="/stylesheets/default/assets/js/plugins/notifications/sweet_alert.min.js"></script>
+		<script type="text/javascript" src="/stylesheets/default/assets/js/plugins/notifications/bootbox.min.js"></script>
+
+    <link href="/css/jats.css" rel="stylesheet" type="text/css">
+
+
   </head>
+
   <body>
+    <!-- Main navbar -->
+    <div id="primary_navbar" class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand"><p>NASA Joint Action Tracking System</p></a>
+
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-gear"></i></a></li>
+                <li><a data-toggle="collapse" data-target="#navbar-second"><i class="icon-menu7"></i></a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-collapse collapse navbar-mobile" id="navbar-mobile">
+
+            <!-- <p class="navbar-text"><span class="label bg-success-400">Online</span></p> -->
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i>
+                        <span><%= users[0].FName %>&nbsp;<%= users[0].LName %></span>
+                        <i class="caret"></i>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+                        <li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
+                        <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /main navbar -->
+
+    <!-- Second navbar -->
+    <div class="navbar navbar-default navbar-mobile" id="navbar-second">
+        <ul class="nav navbar-nav no-border visible-xs-block">
+            <li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="caret"></i></a></li>
+        </ul>
+
+        <div class="navbar-collapse collapse" id="navbar-second-toggle">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="javascript:quickSummary()"><i class="icon-display4 position-left"></i> Home</a></li>
+
+                <li id="actions-drop-down" class="dropdown mega-menu mega-menu-wide">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-clipboard3 position-left"></i> Reports <span class="caret"></span></a>
+
+                    <div class="dropdown-menu dropdown-content">
+                        <div class="dropdown-content-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span class="menu-heading underlined">Actions</span>
+                                    <ul class="menu-list">
+                                        <li>
+                                            <a href="javascript:openActions()"><i class="icon-radio-unchecked"></i>Open</a>
+                                            <!-- <ul>
+                          <li><a href="alpaca_basic.html">Basic inputs</a></li>
+                          <li><a href="alpaca_advanced.html">Advanced inputs</a></li>
+                          <li><a href="alpaca_controls.html">Controls</a></li>
+                        </ul> -->
+                                        </li>
+                                        <li>
+                                            <a href="javascript:closedActions()"><i class="icon-checkmark-circle"></i>Closed</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-notification2"></i>Overdue</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:infoActions()"><i class="icon-info22"></i>Info Only</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#"><i class="icon-add-to-list position-left"></i> Add Action</a>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">
+                        <i class="icon-search4 position-left"></i> Search Action
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="icon-clipboard6 position-left"></i> Quick Summary
+                    </a>
+
+                    <ul class="dropdown-menu width-200">
+                        <li class="dropdown-header">Basic layouts</li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-grid2"></i> Columns</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header highlight">Options</li>
+                                <li><a href="starters/1_col.html">One column</a></li>
+                                <li><a href="starters/2_col.html">Two columns</a></li>
+                                <li class="dropdown-submenu">
+                                    <a href="#">Three columns</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-header highlight">Sidebar position</li>
+                                        <li><a href="starters/3_col_dual.html">Dual sidebars</a></li>
+                                        <li><a href="starters/3_col_double.html">Double sidebars</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="starters/4_col.html">Four columns</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-paragraph-justify3"></i> Navbars</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header highlight">Fixed navbars</li>
+                                <li><a href="starters/layout_navbar_fixed_main.html">Fixed main navbar</a></li>
+                                <li><a href="starters/layout_navbar_fixed_secondary.html">Fixed secondary navbar</a></li>
+                                <li><a href="starters/layout_navbar_fixed_both.html">Both navbars fixed</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-header">Optional layouts</li>
+                        <li><a href="starters/layout_boxed.html"><i class="icon-align-center-horizontal"></i> Fixed width</a></li>
+                        <li><a href="starters/layout_sidebar_sticky.html"><i class="icon-flip-vertical3"></i> Sticky sidebar</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /second navbar -->
+
+    <!-- Page container -->
+    <div class="page-container">
+
+      <!-- Page content -->
+      <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+          <!--Header-->
+          <div class="panel panel-flat">
+            <div class="panel-heading">
+              <h5 class="panel-title">Welcome back <%= users[0].FName %>&nbsp;<%= users[0].LName %>! Here are your upcoming actions.</h5>
+            </div>
+          </div>
+          <!-- /Header -->
+
+          <!-- Basic view -->
+          <div class="panel panel-flat">
+            <div class="panel-body">
+              <div class="fullcalendar-jats" style="overflow-x:auto";></div>
+            </div>
+          </div>
+          <!-- /basic view -->
+
+          <!-- <table style="width:100%;text-align:left;">
+            <thead>
+              <tr>
+                <th>ActionID</th>
+                <th>Title</th>
+                <th>Due Date</th>
+                <th>Due Time</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody style="text-align:left;">
+              <% action_details.forEach(function(item) { %>
+              <tr>
+                <td>
+                    <%= item.ActionID %>
+                </td>
+                <td>
+                    <%= item.Title %>
+                </td>
+                <td>
+                    <%= item.DueDate %>
+                </td>
+                <td>
+                    <%= item.DueTime %>
+                </td>
+                <td>
+                    <%= item.Details %>
+                </td>
+              </tr>
+                  <% }); %>
+            </tbody>
+          </table> -->
+
+          <!-- Agenda view
+          <div class="panel panel-flat">
+            <div class="panel-heading">
+              <h5 class="panel-title">Agenda view</h5>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                          <li><a data-action="collapse"></a></li>
+                          <li><a data-action="reload"></a></li>
+                          <li><a data-action="close"></a></li>
+                        </ul>
+                      </div>
+            </div>
+
+            <div class="panel-body">
+              <div class="fullcalendar-agenda" style="overflow-x:auto;"></div>
+            </div>
+          </div>
+          <!-- agenda view -->
+
+          <!-- <td style="width: 20%;"><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal_default">Launch <i class="icon-play3 position-right"></i></button></td> -->
+          <!-- Basic modal -->
+    <div id="modal_default" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h5 id="show_title" class="modal-title"></h5>
+          </div>
+
+          <div class="modal-body">
+            <table  class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ActionID</th>
+                  <th>Due Date</th>
+                  <th>Due Time</th>
+                  <th>Status</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody style="text-align:left;">
+                <tr>
+                  <td id="show_action_id"></td>
+                  <td id="show_due_date"></td>
+                  <td id="show_due_time"></td>
+                  <td id="show_status"></td>
+                  <td id="show_details"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /basic modal -->
+
+        </div>
+        <!-- /main content -->
+
+      </div>
+      <!-- /page content -->
+    </div>
+    <!-- /page container -->
+
+
+
+
+    <script type="text/javascript">
+    // Default events
+    var jats_events = [
+        {
+            title: 'JATS',
+            start: '2014-11-12T10:30:00',
+            end: '2014-11-12T12:30:00'
+        },
+        {
+            title: 'Click for Google',
+            url: 'http://google.com/',
+            start: '2014-11-28'
+        },
+        {
+            title: 'Static Action',
+            start: '2016-07-01',
+            description: 'Hey there'
+        }
+    ];
+
+    // Basic view
+    $('.fullcalendar-jats').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,basicWeek,basicDay'
+        },
+        defaultDate: '2016-07-07',
+        events:
+            [
+                {
+                    id: '1',
+                    title: 'Static Completed Action',
+                    start: '2016-06-30T10:30:00',
+                    end: '2016-06-30T12:30:00',
+                    status: 'Completed',
+                    color: '#727272',
+                    description: 'This is a completed action'
+                },
+                {
+                    id: '2',
+                    title: 'Static Overdue Action',
+                    start: '2016-07-05T11:30:00',
+                    end: '2016-07-05T12:30:00',
+                    status: 'Overdue',
+                    color: '#8B4343',
+                    description: 'This is an overdue action'
+                },
+                {
+                    id: '3',
+                    title: 'Static Open Action',
+                    start: '2016-07-08T11:30:00',
+                    end: '2016-07-08T12:30:00',
+                    status: 'Open',
+                    color: '#435E8B',
+                    description: 'This is an open action'
+                },
+                {
+                    id: '3',
+                    title: 'Static Open Action 2',
+                    start: '2016-07-07',
+                    end: '2016-07-07',
+                    status: 'Open',
+                    color: '#435E8B',
+                    description: 'This is an open action 2'
+                }
+            ],
+            eventClick: function(calEvent, jsEvent, view) {
+              //swal('Details: ' + calEvent.description);
+              showThisEvent(calEvent);
+              // swal('qweq: ' + calEvent.qweq);
+            }
+    });
+
+    function showThisEvent(cal){
+      // swal('qweq: ' + cal.description);
+       $('#show_title').text(cal.title);
+       $('#show_action_id').text(cal.id);
+       $('#show_due_date').text(cal.start);
+       $('#show_due_time').text(cal.start);
+       $('#show_status').text(cal.status);
+       $('#show_details').text(cal.description);
+
+        $('#modal_default').modal();
+    }
+
+
+    // Add events
+    // ------------------------------
+  var test = <%- JSON.stringify(action_details) %>;
+
+    console.log("test length:" + test.length);
+    for(var i=0; i<test.length; i++){
+      // console.log("test["+i+"]: "+ test[i].DueDate + " " + test[i].DueTime);
+      var temp = test[i].DueDate;
+      temp = temp.split("/");
+      var new_date=temp[2]+"-"+temp[0]+"-"+temp[1];
+
+      var color = "#435E8B";
+      var status= "Open";
+
+      if(test[i].Status==6) {
+        color = "#64BD63";
+        status = "Completed";
+      } else if(test[i].Status==7 || test[i].Status==8 || test[i].Status==9 || test[i].Status==10){
+       color = "#727272";
+       status = "Closed";
+     } else {
+       color = "#435E8B";
+       status= "Open";
+     }
+
+      if(test[i].Details == ""){
+        addCalanderEvent(test[i].ActionID, new_date, new_date, test[i].Title, color,"No Desc", status );
+      }
+      else{
+        addCalanderEvent(test[i].ActionID, new_date, new_date, test[i].Title, color,test[i].Details, status );
+      }
+
+    }
+
+    function addCalanderEvent(id, start, end, title, colour, desc, stat)
+{
+    var eventObject = {
+    title: title,
+    start: start,
+    end: end,
+    id: id,
+    color: colour,
+    description: desc,
+    status: stat
+    };
+
+    $('.fullcalendar-jats').fullCalendar('renderEvent', eventObject, true);
+    return eventObject;
+}
+
+    // var myDate="26-02-2012";
+    // myDate=myDate.split("-");
+
+    // alert(new Date(newDate).getTime());
+    //alert("temp=" + new_date);
+    //var y = JSON.parse(x);
+
+
+
+    // Default events
+    var events = [
+        {
+            title: 'All Day Event',
+            start: '2014-11-01'
+        },
+        {
+            title: 'Long Event',
+            start: '2014-11-07',
+            end: '2014-11-10'
+        },
+        {
+            id: 999,
+            title: 'Repeating Event',
+            start: '2014-11-09T16:00:00'
+        },
+        {
+            id: 999,
+            title: 'Repeating Event',
+            start: '2014-11-16T16:00:00'
+        },
+        {
+            title: 'Conference',
+            start: '2014-11-11',
+            end: '2014-11-13'
+        },
+        {
+            title: 'Meeting',
+            start: '2014-11-12T10:30:00',
+            end: '2014-11-12T12:30:00'
+        },
+        {
+            title: 'Lunch',
+            start: '2014-11-12T12:00:00'
+        },
+        {
+            title: 'Meeting',
+            start: '2014-11-12T14:30:00'
+        },
+        {
+            title: 'Happy Hour',
+            start: '2014-11-12T17:30:00'
+        },
+        {
+            title: 'Dinner',
+            start: '2014-11-12T20:00:00'
+        },
+        {
+            title: 'Birthday Party',
+            start: '2014-11-13T07:00:00'
+        },
+        {
+            title: 'Click for Google',
+            url: 'http://google.com/',
+            start: '2014-11-28'
+        }
+    ];
+
+
+    // Event colors
+    var eventColors = [
+        {
+            title: 'All Day Event',
+            start: '2014-11-01',
+            color: '#EF5350'
+        },
+        {
+            title: 'Long Event',
+            start: '2014-11-07',
+            end: '2014-11-10',
+            color: '#26A69A'
+        },
+        {
+            id: 999,
+            title: 'Repeating Event',
+            start: '2014-11-09T16:00:00',
+            color: '#26A69A'
+        },
+        {
+            id: 999,
+            title: 'Repeating Event',
+            start: '2014-11-16T16:00:00',
+            color: '#5C6BC0'
+        },
+        {
+            title: 'Conference',
+            start: '2014-11-11',
+            end: '2014-11-13',
+            color: '#546E7A'
+        },
+        {
+            title: 'Meeting',
+            start: '2014-11-12T10:30:00',
+            end: '2014-11-12T12:30:00',
+            color: '#546E7A'
+        },
+        {
+            title: 'Lunch',
+            start: '2014-11-12T12:00:00',
+            color: '#546E7A'
+        },
+        {
+            title: 'Meeting',
+            start: '2014-11-12T14:30:00',
+            color: '#546E7A'
+        },
+        {
+            title: 'Happy Hour',
+            start: '2014-11-12T17:30:00',
+            color: '#546E7A'
+        },
+        {
+            title: 'Dinner',
+            start: '2014-11-12T20:00:00',
+            color: '#546E7A'
+        },
+        {
+            title: 'Birthday Party',
+            start: '2014-11-13T07:00:00',
+            color: '#546E7A'
+        },
+        {
+            title: 'Click for Google',
+            url: 'http://google.com/',
+            start: '2014-11-28',
+            color: '#FF7043'
+        }
+    ];
+
+
+    // Event background colors
+    var eventBackgroundColors = [
+        {
+            title: 'All Day Event',
+            start: '2014-11-01'
+        },
+        {
+            title: 'Long Event',
+            start: '2014-11-07',
+            end: '2014-11-10',
+            color: '#DCEDC8',
+            rendering: 'background'
+        },
+        {
+            id: 999,
+            title: 'Repeating Event',
+            start: '2014-11-06T16:00:00'
+        },
+        {
+            id: 999,
+            title: 'Repeating Event',
+            start: '2014-11-16T16:00:00'
+        },
+        {
+            title: 'Conference',
+            start: '2014-11-11',
+            end: '2014-11-13'
+        },
+        {
+            title: 'Meeting',
+            start: '2014-11-12T10:30:00',
+            end: '2014-11-12T12:30:00'
+        },
+        {
+            title: 'Lunch',
+            start: '2014-11-12T12:00:00'
+        },
+        {
+            title: 'Happy Hour',
+            start: '2014-11-12T17:30:00'
+        },
+        {
+            title: 'Dinner',
+            start: '2014-11-24T20:00:00'
+        },
+        {
+            title: 'Meeting',
+            start: '2014-11-03T10:00:00'
+        },
+        {
+            title: 'Birthday Party',
+            start: '2014-11-13T07:00:00'
+        },
+        {
+            title: 'Vacation',
+            start: '2014-11-27',
+            end: '2014-11-30',
+            color: '#FFCCBC',
+            rendering: 'background'
+        }
+    ];
+
+
+
+    // Initialization
+    // ------------------------------
+
+
+
+
+    // Basic view
+    $('.fullcalendar-basic').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,basicWeek,basicDay'
+        },
+        defaultDate: '2014-11-12',
+        editable: true,
+        events: events
+    });
+
+
+    // Agenda view
+    $('.fullcalendar-agenda').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        defaultDate: '2014-11-12',
+        defaultView: 'agendaWeek',
+        editable: true,
+        events: events
+    });
+
+
+    // Event colors
+    $('.fullcalendar-event-colors').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        defaultDate: '2014-11-12',
+        editable: true,
+        events: eventColors
+    });
+
+
+    // Event background colors
+    $('.fullcalendar-background-colors').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        defaultDate: '2014-11-12',
+        editable: true,
+        events: eventBackgroundColors
+    });
+    </script>
+
+<!--
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <br/>
@@ -65,7 +783,7 @@
                 <% }); %>
           </tbody>
         </table>
-
+ -->
 
   </body>
 </html>
